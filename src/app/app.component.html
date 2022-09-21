@@ -1,0 +1,10 @@
+<mat-card>
+  <form [formGroup]="queryForm" class="form-container">
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input formControlName="query" matInput placeholder="Search words" required>
+        </mat-form-field>
+        <button (click)="getResults()" type="submit" mat-raised-button color="primary" style="margin-left: 10px;">Search</button>
+      </div>
+  </form>
+</mat-card>
