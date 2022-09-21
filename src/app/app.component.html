@@ -1,10 +1,27 @@
-<mat-card>
+<mat-toolbar color="primary">
+  <span>Implementing Microsoft Cognitive Search API</span>
+</mat-toolbar>
+
+<div class="container">
   <form [formGroup]="queryForm" class="form-container">
-      <div class="row">
-        <mat-form-field class="full-width">
-          <input formControlName="query" matInput placeholder="Search words" required>
-        </mat-form-field>
-        <button (click)="getResults()" type="submit" mat-raised-button color="primary" style="margin-left: 10px;">Search</button>
-      </div>
+    <div class="row">
+      <mat-form-field [style.width.%]="80">
+        <input formControlName="query" matInput placeholder="Search words" required>
+      </mat-form-field>
+      <button (click)="getResults()" type="submit" mat-raised-button color="primary" style="margin-left: 10px;">Search</button>
+    </div>
   </form>
-</mat-card>
+
+  <mat-card *ngIf="results.length>0">
+    <h1>Search Results</h1>
+    <mat-card class="search-results" *ngFor="let result of results">
+      <mat-card-title-group>
+        <mat-card-title>{{result.HotelName}}</mat-card-title>
+        <mat-card-subtitle>Category: {{result.Category}}</mat-card-subtitle>
+        <mat-card-subtitle>Rating: {{result.Rating}}</mat-card-subtitle>
+      </mat-card-title-group>
+    <mat-card-content>{{result.Description}}</mat-card-content>
+    <mat-card-content><li style="list-style:circle;" *ngFor="let tag of result.Tags">{{tag}}</li></mat-card-content>
+    </mat-card>
+  </mat-card>
+</div>
